@@ -1,5 +1,5 @@
 # Add more folders to ship with the application, here
-qmlfolder.source = qml/mypresentation
+qmlfolder.source = qml/latexpresentation
 qmlfolder.target = qml
 imagefolder.source = images
 imagefolder.target = .

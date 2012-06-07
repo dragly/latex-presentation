@@ -21,7 +21,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Start the QML application viewer
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer.setMainQmlFile(QLatin1String("qml/mypresentation/MyPresentation.qml"));
+    viewer.setMainQmlFile(QLatin1String("qml/latexpresentation/MyPresentation.qml"));
 
     // Connect some signals from the QML code to the viewer
     viewer.connect(viewer.rootObject(), SIGNAL(showFullScreen()), SLOT(showFullScreen()));
