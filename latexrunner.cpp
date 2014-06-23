@@ -5,7 +5,8 @@
 #include <QDir>
 #include <QFile>
 
-LatexRunner::LatexRunner() :
+LatexRunner::LatexRunner(QQuickItem *parent) :
+    QQuickItem(parent),
     m_dpi(600),
     m_forceCompile(false)
 {
@@ -28,10 +29,11 @@ QString LatexRunner::createFormula(QString formula, QString color, bool centered
     }
 
     QString imageFileName = tmpDirName + baseFileName + ".png";
+    QString returnFileName = "file://" + imageFileName;
     QFile imageFile(imageFileName);
     if(imageFile.exists() && !forceCompile()) {
         qDebug() << "Formula image exists. Using existing version.";
-        return imageFileName;
+        return returnFileName;
     } else {
         qDebug() << "File does not exist. Creating...";
         QFile myFormulaFile(myFormulaFileName);
@@ -43,7 +45,7 @@ QString LatexRunner::createFormula(QString formula, QString color, bool centered
         if(centered) {
             centerCommand = "\\def \\mycentered{} ";
         }
-        QString latexCommand = "pdflatex --jobname formula \"" + centerCommand + "\\def \\mycolor{" + color + "} \\def \\myfile{" + myFormulaFileName + "} \\input{qml/mypresentation/formula.tex}\"";
+        QString latexCommand = "pdflatex --jobname formula \"" + centerCommand + "\\def \\mycolor{" + color + "} \\def \\myfile{" + myFormulaFileName + "} \\input{qml/latexpresentation/formula.tex}\"";
         qDebug() << latexCommand;
         system(latexCommand.toStdString().c_str());
 
@@ -51,9 +53,6 @@ QString LatexRunner::createFormula(QString formula, QString color, bool centered
         system(convertCommand.toStdString().c_str());
         qDebug() << "Done creating formula.";
     }
-//    QString echoCommand = "echo '" + formula.toUtf8() + "' > " + myFormulaFileName;
-//    qDebug() << echoCommand;
-//    system(echoCommand.toStdString().c_str());
 
-    return imageFileName;
+    return returnFileName;
 }

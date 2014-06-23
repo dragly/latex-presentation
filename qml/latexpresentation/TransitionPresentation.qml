@@ -34,7 +34,7 @@
 **
 **************************************************************************/
 
-import QtQuick 1.1
+import QtQuick 2.2
 
 Presentation {
 
@@ -42,6 +42,8 @@ Presentation {
 
     width: 1280
     height: 720
+
+    focus: true
 
     property color textColor: "white"
 
@@ -52,14 +54,6 @@ Presentation {
     property Slide toSlide
 
     property int transitionTime: 500;
-
-    //    Rectangle {
-    //        anchors.fill: parent
-    //        gradient: Gradient {
-    //            GradientStop { position: 0; color: "lightsteelblue" }
-    //            GradientStop { position: 1; color: "black" }
-    //        }
-    //    }
 
     SequentialAnimation {
         id: forwardTransition

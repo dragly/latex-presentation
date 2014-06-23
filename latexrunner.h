@@ -1,16 +1,16 @@
 #ifndef LATEXRUNNER_H
 #define LATEXRUNNER_H
 
-#include <QDeclarativeItem>
+#include <QQuickItem>
 
-class LatexRunner : public QDeclarativeItem
+class LatexRunner : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(QString dpi WRITE setDpi READ dpi NOTIFY dpiChanged)
     Q_PROPERTY(bool forceCompile WRITE setForceCompile READ forceCompile NOTIFY forceCompileChanged)
 
 public:
-    LatexRunner();
+    LatexRunner(QQuickItem *parent = 0);
 
     QString dpi() const
     {

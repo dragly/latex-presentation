@@ -34,7 +34,7 @@
 **
 **************************************************************************/
 
-import QtQuick 1.1
+import QtQuick 2.2
 
 Item {
     id: root
@@ -51,6 +51,10 @@ Item {
 
     property bool fullScreen: true
 
+    Text {
+        text: root.currentSlide + " / " + root.slides.length
+    }
+
     onFullScreenChanged: {
         if(fullScreen) {
             showFullScreen()
@@ -60,10 +64,14 @@ Item {
     }
 
     Component.onCompleted: {
+        loadSlides()
+    }
+
+    function loadSlides() {
         var slideCount = 0;
         var slides = [];
-        for (var i=0; i<root.resources.length; ++i) {
-            var r = root.resources[i];
+        for (var i=0; i<root.children.length; ++i) {
+            var r = root.children[i];
             if (r.isSlide) {
                 slides.push(r);
             }

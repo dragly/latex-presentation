@@ -1,11 +1,12 @@
 //import Qt.labs.presentation 1.0
-import QtQuick 1.1
+import QtQuick 2.2
 import LatexPresentation 1.0
 //import QtMultimediaKit 1.1
 
 TransitionPresentation
 {
     id: myPresentation
+    focus: true
 
     transitionTime: 500
 
@@ -13,6 +14,10 @@ TransitionPresentation
     height: 600
 
     textColor: "black"
+
+    Slide {
+        title: "One-body density"
+    }
 
     Slide {
         Latex {
